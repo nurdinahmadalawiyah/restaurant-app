@@ -13,7 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +29,8 @@ class MyApp extends StatelessWidget {
         initialRoute: SplashScreen.routeName,
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
-          RestaurantsListScreen.routeName: (context) => const RestaurantsListScreen(),
+          RestaurantsListScreen.routeName: (context) =>
+              const RestaurantsListScreen(),
           RestaurantDetailScreen.routeName: (context) => RestaurantDetailScreen(
                 restaurant:
                     ModalRoute.of(context)?.settings.arguments as Restaurant,

@@ -135,7 +135,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(restaurant.menus.foods[index].name,
-                                overflow: TextOverflow.ellipsis,
+                                    overflow: TextOverflow.ellipsis,
                                     style:
                                         Theme.of(context).textTheme.subtitle1),
                               ],
@@ -143,7 +143,8 @@ class RestaurantDetailScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 4 / 3,
                         crossAxisSpacing: 2,
@@ -188,7 +189,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 10),
                                 Text(restaurant.menus.drinks[index].name,
-                                overflow: TextOverflow.ellipsis,
+                                    overflow: TextOverflow.ellipsis,
                                     style:
                                         Theme.of(context).textTheme.subtitle1),
                               ],
@@ -196,7 +197,8 @@ class RestaurantDetailScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 4 / 3,
                         crossAxisSpacing: 2,
