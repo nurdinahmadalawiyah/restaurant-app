@@ -14,7 +14,7 @@ TextTheme myTextTheme() {
     headline6: GoogleFonts.poppins(
         fontSize: 19, fontWeight: FontWeight.w500, letterSpacing: 0.15),
     subtitle1: GoogleFonts.poppins(
-        fontSize: 15, fontWeight: FontWeight.w500, letterSpacing: 0.15),
+        fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 0.15),
     subtitle2: GoogleFonts.poppins(
         fontSize: 13, fontWeight: FontWeight.w500, letterSpacing: 0.1),
     bodyText1: GoogleFonts.poppins(

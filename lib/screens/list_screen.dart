@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/models/Restaurant.dart';
+import 'package:lottie/lottie.dart';
+import 'package:restaurant_app/models/restaurant.dart';
 import 'package:restaurant_app/screens/detail_screen.dart';
 import 'package:restaurant_app/styles/custom_color.dart';
 
@@ -12,21 +13,28 @@ class RestaurantsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: tertiaryColor,
+      appBar: AppBar(
+        title:
+            Text('Restaurants', style: Theme.of(context).textTheme.headline5),
+        backgroundColor: tertiaryColor,
+        automaticallyImplyLeading: false,
+        scrolledUnderElevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search_outlined),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Restaurant",
-                      style: Theme.of(context).textTheme.headline5),
-                  Text("Recomended Restaurants for you",
-                      style: Theme.of(context).textTheme.bodyMedium),
-                ],
-              ),
+            Container(
+              padding: const EdgeInsets.only(left: 18, bottom: 8),
+              child: Text("Recomended Restaurants for you",
+                  style: Theme.of(context).textTheme.bodyLarge),
             ),
             Expanded(
               child: FutureBuilder<String>(
@@ -54,10 +62,18 @@ class RestaurantsListScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.error_outline_rounded,
-                              size: 120, color: Colors.red[600]),
-                          Text('Gagal Memuat Data',
-                              style: Theme.of(context).textTheme.headline5),
+                          Lottie.asset(
+                            'assets/error.json',
+                            width: 200,
+                            fit: BoxFit.fill,
+                          ),
+                          Text(
+                            'Gagal Memuat Data',
+                            style:
+                                Theme.of(context).textTheme.headline5!.copyWith(
+                                      color: Colors.black54,
+                                    ),
+                          ),
                         ],
                       ),
                     );
@@ -73,9 +89,9 @@ class RestaurantsListScreen extends StatelessWidget {
 
   Widget _buildRestaurantItem(BuildContext context, Restaurant restaurant) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
       child: Card(
-        color: secondaryColor,
+        margin: EdgeInsets.zero,
         elevation: 0,
         child: ListTile(
           onTap: () {
@@ -105,11 +121,12 @@ class RestaurantsListScreen extends StatelessWidget {
                 color: Colors.orange,
                 size: 15,
               ),
-              Text(restaurant.rating.toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2!
-                      .copyWith(color: Colors.grey[600])),
+              Text(
+                restaurant.rating.toString(),
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      color: Colors.grey[600],
+                    ),
+              ),
             ],
           ),
         ),

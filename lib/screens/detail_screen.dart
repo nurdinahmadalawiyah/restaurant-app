@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/models/Restaurant.dart';
+import 'package:restaurant_app/models/restaurant.dart';
 import 'package:restaurant_app/styles/custom_color.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
@@ -77,6 +77,18 @@ class RestaurantDetailScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyLarge),
                       ],
                     ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star_outlined,
+                          color: Colors.orange,
+                          size: 20,
+                        ),
+                        Text(restaurant.rating.toString(),
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ],
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -126,18 +138,20 @@ class RestaurantDetailScreen extends StatelessWidget {
                           color: secondaryColor,
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            child: Column(
+                            child: Row(
                               children: [
                                 const Icon(
                                   Icons.fastfood_rounded,
                                   color: primaryColor,
-                                  size: 60,
+                                  size: 30,
                                 ),
-                                const SizedBox(height: 10),
-                                Text(restaurant.menus.foods[index].name,
-                                    overflow: TextOverflow.ellipsis,
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(restaurant.menus.foods[index].name,
+                                      overflow: TextOverflow.clip,
+                                      style:
+                                          Theme.of(context).textTheme.subtitle2),
+                                ),
                               ],
                             ),
                           ),
@@ -146,7 +160,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 4 / 3,
+                        childAspectRatio: 4 / 2,
                         crossAxisSpacing: 2,
                         mainAxisSpacing: 2,
                       ),
@@ -180,18 +194,20 @@ class RestaurantDetailScreen extends StatelessWidget {
                           color: secondaryColor,
                           child: Container(
                             padding: const EdgeInsets.all(12),
-                            child: Column(
+                            child: Row(
                               children: [
                                 const Icon(
                                   Icons.local_bar_rounded,
                                   color: primaryColor,
-                                  size: 60,
+                                  size: 30,
                                 ),
-                                const SizedBox(height: 10),
-                                Text(restaurant.menus.drinks[index].name,
-                                    overflow: TextOverflow.ellipsis,
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(restaurant.menus.drinks[index].name,
+                                      overflow: TextOverflow.clip,
+                                      style:
+                                          Theme.of(context).textTheme.subtitle2),
+                                ),
                               ],
                             ),
                           ),
@@ -200,7 +216,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 4 / 3,
+                        childAspectRatio: 4 / 1.5,
                         crossAxisSpacing: 2,
                         mainAxisSpacing: 2,
                       ),
