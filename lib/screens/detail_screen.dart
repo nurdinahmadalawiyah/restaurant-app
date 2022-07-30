@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/models/restaurant.dart';
-import 'package:restaurant_app/styles/custom_color.dart';
+import 'package:restaurant_app/common/custom_color.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
   static const routeName = '/restaurant-detail';
