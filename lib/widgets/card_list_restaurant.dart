@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 
 class CardListRestaurant extends StatelessWidget {
   const CardListRestaurant({
@@ -19,10 +21,10 @@ class CardListRestaurant extends StatelessWidget {
         margin: EdgeInsets.zero,
         elevation: 0,
         child: ListTile(
-          // onTap: () {
-          //   Navigator.pushNamed(context, RestaurantDetailScreen.routeName,
-          //       arguments: restaurant);
-          // },
+          onTap: () {
+            Navigator.pushNamed(context, RestaurantDetailScreen.routeName,
+                arguments: restaurant.id);
+          },
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
           leading: Hero(
@@ -41,11 +43,29 @@ class CardListRestaurant extends StatelessWidget {
               style: Theme.of(context).textTheme.subtitle1),
           subtitle: Row(
             children: [
-              const Icon(
-                Icons.star_rounded,
-                color: Colors.orange,
-                size: 15,
+              RatingBar(
+                initialRating: restaurant.rating,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemSize: 20,
+                ignoreGestures: true,
+                ratingWidget: RatingWidget(
+                  full: const Icon(Icons.star_rounded, color: Colors.orange),
+                  half: const Icon(
+                    Icons.star_half_rounded,
+                    color: Colors.orange,
+                  ),
+                  empty: const Icon(
+                    Icons.star_outline_rounded,
+                    color: Colors.orange,
+                  ),
+                ),
+                onRatingUpdate: (value) {
+                  print(value);
+                },
               ),
+              const SizedBox(width: 10),
               Text(
                 restaurant.rating.toString(),
                 style: Theme.of(context).textTheme.bodyText2!.copyWith(

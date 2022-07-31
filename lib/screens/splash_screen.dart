@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_app/screens/list_screen.dart';
+import 'package:restaurant_app/screens/restaurant_list_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash-screen';
