@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/common/custom_color.dart';
 import 'package:restaurant_app/data/models/detail_restaurant.dart';
 import 'package:restaurant_app/provider/detail_restaurant_provider.dart';
+import 'package:restaurant_app/widgets/cutomer_reviews.dart';
 import 'package:restaurant_app/widgets/error_animation.dart';
 import 'package:restaurant_app/widgets/menu_drinks.dart';
 import 'package:restaurant_app/widgets/menu_foods.dart';
@@ -205,6 +206,50 @@ class RestaurantDetailScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 5),
                               MenuDrinks(restaurant: restaurant),
+                              const SizedBox(height: 16),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 5,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: primaryColor,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text("Customer Reviews",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline6),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              CustomerReviews(restaurant: restaurant),
+                              const SizedBox(height: 10),
+                              Center(
+                                child: ElevatedButton.icon(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.edit_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: primaryColor,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 12)),
+                                  label: Text(
+                                    'Write a Review',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .copyWith(
+                                          color: Colors.white,
+                                        ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
