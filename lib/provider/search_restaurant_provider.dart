@@ -2,40 +2,43 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/data/models/search_restaurant.dart';
 
 enum ResultState { Loading, NoData, HasData, Error }
 
-class RestaurantProvider extends ChangeNotifier {
+class SearchRestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
 
-  RestaurantProvider({required this.apiService}) {
-    _fecthListRestaurant();
+  SearchRestaurantProvider({required this.apiService}) {
+    fetchAllRestaurantSearch(keyword);
   }
 
-  late ListRestaurant _listRestaurant;
-  late ResultState _state;
+  SearchRestaurant? _searchrestaurant;
   String _message = '';
+  String _keyword = '';
+  ResultState? _state;
 
   String get message => _message;
+  String get keyword => _keyword;
 
-  ListRestaurant get list => _listRestaurant;
+  SearchRestaurant? get searchRestaurant => _searchrestaurant;
 
-  ResultState get state => _state;
+  ResultState? get state => _state;
 
-  Future<dynamic> _fecthListRestaurant() async {
+  Future<dynamic> fetchAllRestaurantSearch(String keyword) async {
     try {
       _state = ResultState.Loading;
-      notifyListeners();
-      final restaurant = await apiService.getListRestaurant();
-      if (restaurant.restaurants.isEmpty) {
+      _keyword = keyword;
+
+      final searchRestaurant = await apiService.getSearchRestaurant(keyword);
+      if (searchRestaurant.restaurants.isEmpty) {
         _state = ResultState.NoData;
         notifyListeners();
         return _message = 'No data found';
       } else {
         _state = ResultState.HasData;
         notifyListeners();
-        return _listRestaurant = restaurant;
+        return _searchrestaurant = searchRestaurant;
       }
     } on SocketException {
       _state = ResultState.Error;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
 import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 
-class CardListRestaurant extends StatelessWidget {
-  const CardListRestaurant({
+import '../data/models/search_restaurant.dart';
+
+class CardSearchRestaurant extends StatelessWidget {
+  const CardSearchRestaurant({
     Key? key,
     required this.restaurant,
   }) : super(key: key);
@@ -32,7 +33,7 @@ class CardListRestaurant extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
-                pictureUrl + restaurant.pictureId,
+                '$pictureUrl${restaurant.pictureId}',
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,

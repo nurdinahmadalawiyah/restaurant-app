@@ -16,8 +16,7 @@ class MenuDrinks extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       padding: EdgeInsets.zero,
-      itemCount:
-          restaurant.restaurant.menus.drinks.length,
+      itemCount: restaurant.restaurant.menus.drinks.length,
       itemBuilder: (context, index) {
         return Card(
           elevation: 0,
@@ -33,21 +32,16 @@ class MenuDrinks extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: Text(
-                      restaurant.restaurant.menus
-                          .drinks[index].name,
+                  child: Text(restaurant.restaurant.menus.drinks[index].name,
                       overflow: TextOverflow.clip,
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2),
+                      style: Theme.of(context).textTheme.subtitle2),
                 ),
               ],
             ),
           ),
         );
       },
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 4 / 1.5,
         crossAxisSpacing: 2,

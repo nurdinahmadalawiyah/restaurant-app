@@ -21,16 +21,16 @@ class CustomerReviews extends StatelessWidget {
         return Card(
           elevation: 0,
           color: Colors.grey[200],
-          child: Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Row(
                         children: [
                           const Icon(
                             Icons.person_rounded,
@@ -38,23 +38,26 @@ class CustomerReviews extends StatelessWidget {
                             size: 20,
                           ),
                           const SizedBox(width: 10),
-                          Text(
-                              restaurant.restaurant.customerReviews[index].name,
-                              overflow: TextOverflow.clip,
-                              style: Theme.of(context).textTheme.subtitle1),
+                          Expanded(
+                            child: Text(
+                                restaurant
+                                    .restaurant.customerReviews[index].name,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.subtitle1),
+                          ),
                         ],
                       ),
-                      Text(restaurant.restaurant.customerReviews[index].date,
-                          overflow: TextOverflow.clip,
-                          style: Theme.of(context).textTheme.caption),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Text(restaurant.restaurant.customerReviews[index].review,
-                      overflow: TextOverflow.clip,
-                      style: Theme.of(context).textTheme.bodyMedium),
-                ],
-              ),
+                    ),
+                    Text(restaurant.restaurant.customerReviews[index].date,
+                        overflow: TextOverflow.clip,
+                        style: Theme.of(context).textTheme.caption),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Text(restaurant.restaurant.customerReviews[index].review,
+                    overflow: TextOverflow.clip,
+                    style: Theme.of(context).textTheme.bodyMedium),
+              ],
             ),
           ),
         );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class ErrorAnimation extends StatelessWidget {
-  const ErrorAnimation({
+class SearchAnimation extends StatelessWidget {
+  const SearchAnimation({
     Key? key,
   }) : super(key: key);
 
@@ -12,12 +12,12 @@ class ErrorAnimation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Lottie.asset(
-          'assets/error.json',
+          'assets/search.json',
           width: 200,
           fit: BoxFit.fill,
         ),
         Text(
-          'Data tidak ditemukan',
+          'Cari Restoran',
           style: Theme.of(context).textTheme.headline5!.copyWith(
                 color: Colors.black54,
               ),
