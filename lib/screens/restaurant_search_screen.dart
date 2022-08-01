@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/common/custom_color.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
+import 'package:restaurant_app/provider/result_state.dart';
 import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/widgets/card_search_restaurant.dart';
 import 'package:restaurant_app/widgets/error_animation.dart';
@@ -100,11 +101,11 @@ class _RestaurantsSearchScreenState extends State<RestaurantsSearchScreen> {
                 ),
                 Expanded(child: Consumer<SearchRestaurantProvider>(
                   builder: (context, state, _) {
-                    if (state.state == ResultState.Loading) {
+                    if (state.state == ResultState.loading) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
-                    } else if (state.state == ResultState.HasData) {
+                    } else if (state.state == ResultState.hasData) {
                       state.fetchAllRestaurantSearch(keyword);
                       return ListView.builder(
                         shrinkWrap: true,
@@ -115,12 +116,12 @@ class _RestaurantsSearchScreenState extends State<RestaurantsSearchScreen> {
                           return CardSearchRestaurant(restaurant: restaurant);
                         },
                       );
-                    } else if (state.state == ResultState.NoData) {
+                    } else if (state.state == ResultState.noData) {
                       state.fetchAllRestaurantSearch(keyword);
                       return const Center(child: ErrorAnimation());
-                    } else if (state.state == ResultState.NoConnection) {
+                    } else if (state.state == ResultState.noConnection) {
                       return const Center(child: NoConnectionAnimation());
-                    } else if (state.state == ResultState.Error) {
+                    } else if (state.state == ResultState.error) {
                       return const Center(child: SearchAnimation());
                     } else {
                       return const Center(child: Text('Unknown error'));

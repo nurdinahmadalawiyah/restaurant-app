@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/models/search_restaurant.dart';
-
-enum ResultState { Loading, NoData, HasData, Error, NoConnection }
+import 'package:restaurant_app/provider/result_state.dart';
 
 class SearchRestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
@@ -27,25 +26,25 @@ class SearchRestaurantProvider extends ChangeNotifier {
 
   Future<dynamic> fetchAllRestaurantSearch(String keyword) async {
     try {
-      _state = ResultState.Loading;
+      _state = ResultState.loading;
       _keyword = keyword;
 
       final searchRestaurant = await apiService.getSearchRestaurant(keyword);
       if (searchRestaurant.restaurants.isEmpty) {
-        _state = ResultState.NoData;
+        _state = ResultState.noData;
         notifyListeners();
         return _message = 'No data found';
       } else {
-        _state = ResultState.HasData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _searchrestaurant = searchRestaurant;
       }
     } on SocketException {
-      _state = ResultState.NoConnection;
+      _state = ResultState.noConnection;
       notifyListeners();
       return _message = 'No internet connection';
     } catch (e) {
-      _state = ResultState.Error;
+      _state = ResultState.error;
       notifyListeners();
       return _message = e.toString();
     }

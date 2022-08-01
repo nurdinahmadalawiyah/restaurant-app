@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/models/list_restaurant.dart';
-
-enum ResultState { Loading, NoData, HasData, Error, NoConnection }
+import 'package:restaurant_app/provider/result_state.dart';
 
 class RestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
@@ -25,24 +24,24 @@ class RestaurantProvider extends ChangeNotifier {
 
   Future<dynamic> _fecthListRestaurant() async {
     try {
-      _state = ResultState.Loading;
+      _state = ResultState.loading;
       notifyListeners();
       final restaurant = await apiService.getListRestaurant();
       if (restaurant.restaurants.isEmpty) {
-        _state = ResultState.NoData;
+        _state = ResultState.noData;
         notifyListeners();
         return _message = 'No data found';
       } else {
-        _state = ResultState.HasData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _listRestaurant = restaurant;
       }
     } on SocketException {
-      _state = ResultState.NoConnection;
+      _state = ResultState.noConnection;
       notifyListeners();
       return _message = 'No internet connection';
     } catch (e) {
-      _state = ResultState.Error;
+      _state = ResultState.error;
       notifyListeners();
       return _message = e.toString();
     }
