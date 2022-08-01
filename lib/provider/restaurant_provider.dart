@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/models/list_restaurant.dart';
 
-enum ResultState { Loading, NoData, HasData, Error }
+enum ResultState { Loading, NoData, HasData, Error, NoConnection }
 
 class RestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
@@ -38,7 +38,7 @@ class RestaurantProvider extends ChangeNotifier {
         return _listRestaurant = restaurant;
       }
     } on SocketException {
-      _state = ResultState.Error;
+      _state = ResultState.NoConnection;
       notifyListeners();
       return _message = 'No internet connection';
     } catch (e) {

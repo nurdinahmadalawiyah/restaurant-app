@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/provider/detail_restaurant_provider.dart';
 import 'package:restaurant_app/widgets/error_animation.dart';
 import 'package:restaurant_app/widgets/item_detail_restaurant.dart';
+import 'package:restaurant_app/widgets/no_connection_animation.dart';
 import '../data/api/api_service.dart';
 
 class RestaurantDetailScreen extends StatelessWidget {
@@ -35,6 +36,8 @@ class RestaurantDetailScreen extends StatelessWidget {
                     restaurant: restaurant, pictureUrl: pictureUrl);
               } else if (state.state == ResultState.NoData) {
                 return const Center(child: ErrorAnimation());
+              } else if (state.state == ResultState.NoConnection) {
+                return const Center(child: NoConnectionAnimation());
               } else if (state.state == ResultState.Error) {
                 return const Center(child: ErrorAnimation());
               } else {

@@ -6,6 +6,7 @@ import 'package:restaurant_app/provider/restaurant_provider.dart';
 import 'package:restaurant_app/screens/restaurant_search_screen.dart';
 import 'package:restaurant_app/widgets/card_list_restaurant.dart';
 import 'package:restaurant_app/widgets/error_animation.dart';
+import 'package:restaurant_app/widgets/no_connection_animation.dart';
 
 class RestaurantsListScreen extends StatefulWidget {
   static const routeName = '/restaurant-list';
@@ -65,13 +66,10 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
                         );
                       } else if (state.state == ResultState.NoData) {
                         return const Center(child: ErrorAnimation());
+                      } else if (state.state == ResultState.NoConnection) {
+                        return const Center(child: NoConnectionAnimation());
                       } else if (state.state == ResultState.Error) {
-                        return Center(
-                          child: Text(
-                            state.message,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                        );
+                        return const Center(child: ErrorAnimation());
                       } else {
                         return const Text('Unknown Error');
                       }

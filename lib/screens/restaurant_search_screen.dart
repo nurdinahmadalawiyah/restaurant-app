@@ -5,6 +5,7 @@ import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/widgets/card_search_restaurant.dart';
 import 'package:restaurant_app/widgets/error_animation.dart';
+import 'package:restaurant_app/widgets/no_connection_animation.dart';
 import 'package:restaurant_app/widgets/search_animation.dart';
 
 class RestaurantsSearchScreen extends StatefulWidget {
@@ -117,6 +118,8 @@ class _RestaurantsSearchScreenState extends State<RestaurantsSearchScreen> {
                     } else if (state.state == ResultState.NoData) {
                       state.fetchAllRestaurantSearch(keyword);
                       return const Center(child: ErrorAnimation());
+                    } else if (state.state == ResultState.NoConnection) {
+                      return const Center(child: NoConnectionAnimation());
                     } else if (state.state == ResultState.Error) {
                       return const Center(child: SearchAnimation());
                     } else {
