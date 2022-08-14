@@ -14,21 +14,22 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: tertiaryColor,
         title: const Text('Settings'),
       ),
-      body: Material(
-        color: tertiaryColor,
-        child: ListTile(
-          title: const Text('Restaurant Notification'),
-          trailing: Consumer<SchedulingProvider>(
-            builder: (context, scheduled, _) {
-              return Switch.adaptive(
+      body: Consumer<SchedulingProvider>(
+        builder: (context, scheduled, _) {
+          return Material(
+            color: tertiaryColor,
+            child: ListTile(
+              title: const Text('Restaurant Notification'),
+              subtitle: Text(scheduled.message),
+              trailing: Switch.adaptive(
                 value: scheduled.isScheduled,
                 onChanged: (value) async {
-                    scheduled.scheduledRestaurant(value);
+                  scheduled.scheduledRestaurant(value);
                 },
-              );
-            },
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

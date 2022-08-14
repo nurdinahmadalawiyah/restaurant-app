@@ -20,9 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: tertiaryColor,
       body: <Widget>[
-        RestaurantsListScreen(),
-        RestaurantsFavoriteScreen(),
-        SettingsScreen(),
+        const RestaurantsListScreen(),
+        const RestaurantsFavoriteScreen(),
+        const SettingsScreen(),
       ][_currentIndex],
       bottomNavigationBar: NavigationBar(
         backgroundColor: tertiaryColor,
