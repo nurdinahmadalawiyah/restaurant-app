@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:restaurant_app/screens/restaurant_list_screen.dart';
+import 'package:restaurant_app/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash-screen';
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var duration = const Duration(seconds: 5);
     return Timer(duration, () {
       if (mounted) {
-        Navigator.pushNamed(context, RestaurantsListScreen.routeName);
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
       }
     });
   }
