@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 
 class CardListRestaurant extends StatelessWidget {

@@ -46,37 +46,34 @@ class _RestaurantsListScreenState extends State<RestaurantsListScreen> {
                   style: Theme.of(context).textTheme.bodyLarge),
             ),
             Expanded(
-              child: ChangeNotifierProvider(
-                create: (_) => RestaurantProvider(apiService: ApiService()),
-                child: Consumer<RestaurantProvider>(
-                  builder: (context, state, _) {
-                    if (state.state == ResultState.loading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+              child: Consumer<RestaurantProvider>(
+                builder: (context, state, _) {
+                  if (state.state == ResultState.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    if (state.state == ResultState.hasData) {
+                      return ListView.builder(
+                        itemCount: state.list.restaurants.length,
+                        itemBuilder: (context, index) {
+                          var restaurant = state.list.restaurants[index];
+                          return CardListRestaurant(
+                            restaurant: restaurant,
+                          );
+                        },
                       );
+                    } else if (state.state == ResultState.noData) {
+                      return const Center(child: ErrorAnimation());
+                    } else if (state.state == ResultState.noConnection) {
+                      return const Center(child: NoConnectionAnimation());
+                    } else if (state.state == ResultState.error) {
+                      return const Center(child: ErrorAnimation());
                     } else {
-                      if (state.state == ResultState.hasData) {
-                        return ListView.builder(
-                          itemCount: state.list.restaurants.length,
-                          itemBuilder: (context, index) {
-                            var restaurant = state.list.restaurants[index];
-                            return CardListRestaurant(
-                              restaurant: restaurant,
-                            );
-                          },
-                        );
-                      } else if (state.state == ResultState.noData) {
-                        return const Center(child: ErrorAnimation());
-                      } else if (state.state == ResultState.noConnection) {
-                        return const Center(child: NoConnectionAnimation());
-                      } else if (state.state == ResultState.error) {
-                        return const Center(child: ErrorAnimation());
-                      } else {
-                        return const Text('Unknown Error');
-                      }
+                      return const Text('Unknown Error');
                     }
-                  },
-                ),
+                  }
+                },
               ),
             ),
           ],

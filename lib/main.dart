@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/common/custom_color.dart';
 import 'package:restaurant_app/common/custom_text.dart';
 import 'package:restaurant_app/common/navigation.dart';
+import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/db/database_helper.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/provider/database_provider.dart';
+import 'package:restaurant_app/provider/restaurant_provider.dart';
 import 'package:restaurant_app/provider/scheduling_provider.dart';
+import 'package:restaurant_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_app/screens/home_screen.dart';
 import 'package:restaurant_app/screens/restaurant_detail_screen.dart';
 import 'package:restaurant_app/screens/restaurant_list_screen.dart';
@@ -41,6 +44,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (_) => RestaurantProvider(apiService: ApiService()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => SearchRestaurantProvider(apiService: ApiService()),
+        ),
+        ChangeNotifierProvider(
           create: (_) => SchedulingProvider(),
         ),
         ChangeNotifierProvider(
@@ -63,7 +72,8 @@ class MyApp extends StatelessWidget {
                 const RestaurantsListScreen(),
             RestaurantDetailScreen.routeName: (context) =>
                 RestaurantDetailScreen(
-                  restaurant: ModalRoute.of(context)?.settings.arguments as Restaurant,
+                  restaurant:
+                      ModalRoute.of(context)?.settings.arguments as Restaurant,
                 ),
             RestaurantsSearchScreen.routeName: (context) =>
                 const RestaurantsSearchScreen(),

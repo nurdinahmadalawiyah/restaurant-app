@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../common/navigation.dart';

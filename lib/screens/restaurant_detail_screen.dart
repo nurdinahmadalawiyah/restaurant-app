@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/common/custom_color.dart';
-import 'package:restaurant_app/data/models/list_restaurant.dart';
+import 'package:restaurant_app/data/models/restaurant.dart';
 import 'package:restaurant_app/provider/database_provider.dart';
 import 'package:restaurant_app/provider/detail_restaurant_provider.dart';
 import 'package:restaurant_app/utils/result_state.dart';
