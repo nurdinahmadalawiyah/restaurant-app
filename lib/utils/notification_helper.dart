@@ -20,16 +20,10 @@ class NotificationHelper {
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
-        const AndroidInitializationSettings('app_icon');
-
-    var initializationSettingsIOS = const IOSInitializationSettings(
-      requestAlertPermission: false,
-      requestBadgePermission: false,
-      requestSoundPermission: false,
-    );
+        const AndroidInitializationSettings('mipmap/ic_launcher');
 
     var initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+        android: initializationSettingsAndroid);
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String? payload) async {
@@ -56,10 +50,8 @@ class NotificationHelper {
         ticker: "ticker",
         styleInformation: const DefaultStyleInformation(true, true));
 
-    var iOSPlatfromChannelSpecifics = const IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics,
-        iOS: iOSPlatfromChannelSpecifics);
+        android: androidPlatformChannelSpecifics);
 
     var titleNotification = "<b>Recomended Restaurant for you</b>";
     var nameRestaurant = restaurants
