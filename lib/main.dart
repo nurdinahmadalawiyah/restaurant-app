@@ -8,7 +8,9 @@ import 'package:restaurant_app/common/navigation.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/data/db/database_helper.dart';
 import 'package:restaurant_app/data/models/restaurant.dart';
+import 'package:restaurant_app/data/preferences/preference_helper.dart';
 import 'package:restaurant_app/provider/database_provider.dart';
+import 'package:restaurant_app/provider/preferences_provider.dart';
 import 'package:restaurant_app/provider/restaurant_provider.dart';
 import 'package:restaurant_app/provider/scheduling_provider.dart';
 import 'package:restaurant_app/provider/search_restaurant_provider.dart';
@@ -19,6 +21,7 @@ import 'package:restaurant_app/screens/restaurant_search_screen.dart';
 import 'package:restaurant_app/screens/splash_screen.dart';
 import 'package:restaurant_app/utils/background_service.dart';
 import 'package:restaurant_app/utils/notification_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -51,6 +54,13 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => SchedulingProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PreferencesProvider(
+            preferencesHelper: PreferencesHelper(
+              sharedPreferences: SharedPreferences.getInstance(),
+            ),
+          ),
         ),
         ChangeNotifierProvider(
           create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
