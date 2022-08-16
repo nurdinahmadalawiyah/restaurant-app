@@ -30,7 +30,7 @@ class RestaurantDetailScreen extends StatelessWidget {
             leading: Container(
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: primaryColor,
+                color: secondaryColor,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: GestureDetector(
@@ -39,11 +39,12 @@ class RestaurantDetailScreen extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.arrow_back_rounded,
-                  color: Colors.white,
+                  color: primaryColor,
                 ),
               ),
             ),
-            backgroundColor: primaryColor,
+            backgroundColor: secondaryColor,
+            scrolledUnderElevation: 0,
             expandedHeight: 200,
             pinned: true,
             automaticallyImplyLeading: false,
@@ -57,7 +58,10 @@ class RestaurantDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              title: isScrolled ? Text(restaurant.name) : null,
+              title: isScrolled
+                  ? Text(restaurant.name,
+                      style: Theme.of(context).textTheme.headline6)
+                  : null,
               titlePadding: const EdgeInsets.only(left: 56, bottom: 14),
             ),
             actions: [
@@ -76,8 +80,8 @@ class RestaurantDetailScreen extends StatelessWidget {
                           );
                         } else {
                           return IconButton(
-                            icon: const Icon(Icons.favorite_border_rounded),
-                            color: Colors.white,
+                            icon: const Icon(Icons.favorite_rounded),
+                            color: Colors.grey,
                             onPressed: () => provider.addFavorite(restaurant),
                           );
                         }

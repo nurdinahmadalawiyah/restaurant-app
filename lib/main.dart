@@ -35,7 +35,8 @@ Future<void> main() async {
   _service.initializeIsolate();
 
   await AndroidAlarmManager.initialize();
-
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+  
   runApp(const MyApp());
 }
 
